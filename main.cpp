@@ -42,7 +42,7 @@ jumpHere:
         pos = setPosXY(pos, pos.X, pos.Y);
         SetConsoleCursorPosition(console, pos);
         std::cout << msgChargerMissing;
-        Sleep(5000);
+        Sleep(3200);
         ShowWindow(GetConsoleWindow(), SW_HIDE);
     }
     // AcLineStatus returns 1 if pc is loading
@@ -50,7 +50,7 @@ jumpHere:
     {
         // Notify user and update power status
         GetSystemPowerStatus(&status);
-        Sleep(800);
+        Sleep(2000);
     }
 
     // Clear Screen and Thank user for plugging in Laptop
@@ -79,7 +79,7 @@ jumpHere:
             ShowWindow(GetConsoleWindow(), SW_MAXIMIZE);
             goto jumpHere;
         }
-        Sleep(10000);
+        Sleep(2000);
         GetSystemPowerStatus(&status);
     }
     return 0;
