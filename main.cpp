@@ -42,6 +42,8 @@ jumpHere:
         pos = setPosXY(pos, pos.X, pos.Y);
         SetConsoleCursorPosition(console, pos);
         std::cout << msgChargerMissing;
+        Sleep(5000);
+        ShowWindow(GetConsoleWindow(), SW_HIDE);
     }
     // AcLineStatus returns 1 if pc is loading
     while (!status.ACLineStatus)
@@ -54,6 +56,7 @@ jumpHere:
     // Clear Screen and Thank user for plugging in Laptop
     system("cls");
     SetConsoleTextAttribute(console, 11);
+    ShowWindow(GetConsoleWindow(), SW_MAXIMIZE);
 
     pos = setPosXY(pos, (size.X - sizeof(thx)) / 2, size.Y / 2); // Welcome back
     SetConsoleCursorPosition(console, pos);
