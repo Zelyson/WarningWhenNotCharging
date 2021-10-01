@@ -39,7 +39,7 @@ int main(int argc, char const *argv[])
 jumpHere:
     if (!status.ACLineStatus)
     {
-        pos = setPosXY(pos, pos.X, pos.Y + 1);
+        pos = setPosXY(pos, pos.X, pos.Y);
         SetConsoleCursorPosition(console, pos);
         std::cout << msgChargerMissing;
     }
@@ -48,7 +48,7 @@ jumpHere:
     {
         // Notify user and update power status
         GetSystemPowerStatus(&status);
-        Sleep(900);
+        Sleep(800);
     }
 
     // Clear Screen and Thank user for plugging in Laptop
