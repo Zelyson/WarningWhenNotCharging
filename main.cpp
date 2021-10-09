@@ -27,7 +27,7 @@ int main(int argc, char const *argv[])
     LPDWORD written;
     char thx[] = "| Thank you! |";
     char undLn[] = "<------------>";
-    char msgChargerMissing[] = "-- Please plug in a charger --\n";
+    char msgChargerMissing[] = "-- Please plug in a charger --";
     pos = setPosXY(pos, (size.X - sizeof(msgChargerMissing)) / 2, size.Y / 2);
 
     // Hide cursoe
