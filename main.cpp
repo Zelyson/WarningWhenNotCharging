@@ -11,7 +11,7 @@ COORD setPosXY(COORD position, int x, int y)
 }
 
 // MAIN()
-int main(int argc, char const *argv[])
+int main(int argc, char const* argv[])
 {
     ShowWindow(GetConsoleWindow(), SW_MAXIMIZE);
 
@@ -28,7 +28,7 @@ int main(int argc, char const *argv[])
     char thx[] = "| Thank you! |";
     char undLn[] = "<------------>";
     char msgChargerMissing[] = "-- Please plug in a charger --";
-    pos = setPosXY(pos, (size.X - sizeof(msgChargerMissing)) / 2, size.Y / 2);
+    pos = setPosXY(size, (size.X - sizeof(msgChargerMissing)) / 2, size.Y / 2);
 
     // Hide cursoe
     CONSOLE_CURSOR_INFO info;
