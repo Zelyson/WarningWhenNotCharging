@@ -13,10 +13,7 @@ COORD setPosXY(COORD position, int x, int y)
 // MAIN()
 int main(int argc, char const* argv[])
 {
-    ShowWindow(GetConsoleWindow(), SW_MAXIMIZE);
-
     // Battery status
-
     SYSTEM_POWER_STATUS status;
     GetSystemPowerStatus(&status);
 
@@ -24,27 +21,33 @@ int main(int argc, char const* argv[])
     HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
     COORD size = GetLargestConsoleWindowSize(console);
     COORD pos;
-    LPDWORD written;
     char thx[] = "| Thank you! |";
     char undLn[] = "<------------>";
     char msgChargerMissing[] = "-- Please plug in a charger --";
+    int missingCount = 7;
     pos = setPosXY(size, (size.X - sizeof(msgChargerMissing)) / 2, size.Y / 2);
 
-    // Hide cursoe
+    // Hide cursor
     CONSOLE_CURSOR_INFO info;
     info.dwSize = 100;
     info.bVisible = false;
     SetConsoleCursorInfo(console, &info);
 
-jumpHere:
-    if (!status.ACLineStatus)
+    // Skip following *Not plugged in* loop and go into plugged in loop
+    if (status.ACLineStatus) goto pluggedLoop;
+notPlugged:
+    ShowWindow(GetConsoleWindow(), SW_MAXIMIZE);
+    SetConsoleTextAttribute(console, 4);
+    pos = setPosXY(pos, pos.X - (missingCount - 1) * sizeof(msgChargerMissing) / 2, pos.Y);  // Calculate offset to center messages
+    SetConsoleCursorPosition(console, pos);
+    for (int i = missingCount; i > 0; i--)
     {
-        pos = setPosXY(pos, pos.X, pos.Y);
-        SetConsoleCursorPosition(console, pos);
         std::cout << msgChargerMissing;
-        Sleep(3200);
-        ShowWindow(GetConsoleWindow(), SW_HIDE);
     }
+    pos = setPosXY(pos, pos.X, pos.Y + 1);
+    Sleep(3200);
+    ShowWindow(GetConsoleWindow(), SW_HIDE);
+
     // AcLineStatus returns 1 if pc is loading
     while (!status.ACLineStatus)
     {
@@ -58,7 +61,7 @@ jumpHere:
     SetConsoleTextAttribute(console, 11);
     ShowWindow(GetConsoleWindow(), SW_MAXIMIZE);
 
-    pos = setPosXY(pos, (size.X - sizeof(thx)) / 2, size.Y / 2); // Welcome back
+    pos = setPosXY(pos, (size.X - sizeof(thx)) / 2, size.Y / 2);
     SetConsoleCursorPosition(console, pos);
     std::cout << thx;
     pos = setPosXY(pos, pos.X, pos.Y - 1); // Top Line Box
@@ -70,14 +73,14 @@ jumpHere:
 
     // Wait, hide window and check every 10 sec if AC is no more
     Sleep(2000);
+pluggedLoop:
     ShowWindow(GetConsoleWindow(), SW_HIDE); // Hide Window
     while (true)
     {
         if (!status.ACLineStatus)
         {
             system("cls");
-            ShowWindow(GetConsoleWindow(), SW_MAXIMIZE);
-            goto jumpHere;
+            goto notPlugged;
         }
         Sleep(2000);
         GetSystemPowerStatus(&status);
