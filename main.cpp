@@ -18,6 +18,7 @@ int main(int argc, char const* argv[])
     GetSystemPowerStatus(&status);
 
     // For console handles
+    HWND consoleWindow = GetConsoleWindow();
     HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
     COORD size = GetLargestConsoleWindowSize(console);
     COORD pos;
@@ -36,7 +37,7 @@ int main(int argc, char const* argv[])
     // Skip following *Not plugged in* loop and go into plugged in loop
     if (status.ACLineStatus) goto pluggedLoop;
 notPlugged:
-    ShowWindow(GetConsoleWindow(), SW_MAXIMIZE);
+    ShowWindow(consoleWindow, SW_MAXIMIZE);
     SetConsoleTextAttribute(console, 4);
     pos = setPosXY(pos, pos.X - (missingCount - 1) * sizeof(msgChargerMissing) / 2, pos.Y);  // Calculate offset to center messages
     SetConsoleCursorPosition(console, pos);
@@ -46,7 +47,7 @@ notPlugged:
     }
     pos = setPosXY(pos, pos.X, pos.Y + 1);
     Sleep(3200);
-    ShowWindow(GetConsoleWindow(), SW_HIDE);
+    ShowWindow(consoleWindow, SW_HIDE);
 
     // AcLineStatus returns 1 if pc is loading
     while (!status.ACLineStatus)
@@ -59,7 +60,7 @@ notPlugged:
     // Clear Screen and Thank user for plugging in Laptop
     system("cls");
     SetConsoleTextAttribute(console, 11);
-    ShowWindow(GetConsoleWindow(), SW_MAXIMIZE);
+    ShowWindow(consoleWindow, SW_MAXIMIZE);
 
     pos = setPosXY(pos, (size.X - sizeof(thx)) / 2, size.Y / 2);
     SetConsoleCursorPosition(console, pos);
@@ -74,7 +75,7 @@ notPlugged:
     // Wait, hide window and check every 10 sec if AC is no more
     Sleep(2000);
 pluggedLoop:
-    ShowWindow(GetConsoleWindow(), SW_HIDE); // Hide Window
+    ShowWindow(consoleWindow, SW_HIDE); // Hide Window
     while (true)
     {
         if (!status.ACLineStatus)
