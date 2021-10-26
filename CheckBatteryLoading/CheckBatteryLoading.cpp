@@ -28,11 +28,15 @@ int main(int argc, char const* argv[])
 	int missingCount = 7;
 	pos = setPosXY(size, (size.X - sizeof(msgChargerMissing)) / 2, size.Y / 2);
 
+	ShowWindow(consoleWindow, SW_SHOW);
+
 	// Hide cursor
 	CONSOLE_CURSOR_INFO info;
 	info.dwSize = 100;
 	info.bVisible = false;
 	SetConsoleCursorInfo(console, &info);
+
+	ShowWindow(consoleWindow, SW_HIDE);
 
 	// Skip following *Not plugged in* loop and go into plugged in loop
 	if (status.ACLineStatus) goto pluggedLoop;
