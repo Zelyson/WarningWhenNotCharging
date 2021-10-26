@@ -154,7 +154,8 @@
     <ClCompile Include="CheckBatteryLoading.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="readme.md" />
+    <None Include="README.md" />
+    <None Include="terminal_colors.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
