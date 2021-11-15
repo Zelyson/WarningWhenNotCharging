@@ -28,7 +28,8 @@ int main(int argc, char const* argv[])
 	int missingCount = 7;
 	pos = setPosXY(size, (size.X - sizeof(msgChargerMissing)) / 2, size.Y / 2);
 
-	ShowWindow(consoleWindow, SW_SHOW);
+	ShowWindow(consoleWindow, SW_MAXIMIZE);
+	Sleep(100);
 
 	// Hide cursor
 	CONSOLE_CURSOR_INFO info;
