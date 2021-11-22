@@ -1,5 +1,7 @@
 #include <iostream>
 #include <windows.h>
+#include <mmsystem.h>
+
 
 // Return COORD object with modified XY-Coordinates
 COORD setPosXY(COORD position, int x, int y)
@@ -51,6 +53,8 @@ notPlugged:
 		std::cout << msgChargerMissing;
 	}
 	pos = setPosXY(pos, pos.X, pos.Y + 1);
+	// Play scream sound
+	PlaySoundA((LPCSTR)"C:\\Dev\\C++\\CheckBatteryLoading\\x64\\Release\\scream.wav", NULL, SND_FILENAME | SND_ASYNC);
 	Sleep(3200);
 	ShowWindow(consoleWindow, SW_HIDE);
 	
