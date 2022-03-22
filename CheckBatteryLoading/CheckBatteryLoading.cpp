@@ -17,8 +17,8 @@ int main(int argc, char const* argv[])
 		GetSystemPowerStatus(&status);
 		if (!status.ACLineStatus)
 		{
+			MessageBeep(MB_ICONWARNING);
 			MessageBoxW(NULL, (LPCWSTR)L"Your Device is not plugged in.", (LPCWSTR)L"Check battery loading", MB_OK | MB_TASKMODAL);
-			Sleep(4500);
 
 			while (!status.ACLineStatus)
 			{
