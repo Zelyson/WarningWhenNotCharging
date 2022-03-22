@@ -17,9 +17,8 @@ int main(int argc, char const* argv[])
 		GetSystemPowerStatus(&status);
 		if (!status.ACLineStatus)
 		{
-			PlaySoundA((LPCSTR)"C:\\Dev\\C++\\CheckBatteryLoading\\x64\\Release\\scream.wav", NULL, SND_FILENAME | SND_ASYNC);
-			MessageBox(NULL, (LPCWSTR)L"Your Device is not plugged in.", (LPCWSTR)L"Device not plugged in.", MB_ICONWARNING);
-			Sleep(3200);
+			MessageBoxW(NULL, (LPCWSTR)L"Your Device is not plugged in.", (LPCWSTR)L"Check battery loading", MB_OK | MB_TASKMODAL);
+			Sleep(4500);
 
 			while (!status.ACLineStatus)
 			{
@@ -27,8 +26,7 @@ int main(int argc, char const* argv[])
 				GetSystemPowerStatus(&status);
 			}
 		}
-
-		if (status.ACLineStatus) Sleep(5000);
+		if (status.ACLineStatus) Sleep(1000);
 	}
 
 	return 0;
