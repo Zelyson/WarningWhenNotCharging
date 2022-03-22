@@ -15,6 +15,7 @@ COORD setPosXY(COORD position, int x, int y)
 // MAIN()
 int main(int argc, char const* argv[])
 {
+	//Test Heeeeeeeeeeeee
 	// Battery status
 	SYSTEM_POWER_STATUS status;
 	GetSystemPowerStatus(&status);
