@@ -5,8 +5,8 @@ This program is intended as a reminder for laptop users. Comming home from schoo
 Putting it in your `%appdata%\Microsoft\Windows\Start Menu\Programs\Startup` folder is something I would recommend, because if you remember to start the program which reminds you to charge your laptop, you probably dont need it :).
 
 ## Compile:
-The binaries in "*Releases*" are compiled with Visual Studio 2022 17.1.1 in "*Release*"-mode.
+The binaries in "*Releases*" are compiled with Visual Studio 2022 17.1.2 in "*Release*"-mode.
 
 Hope this can help.
 
-Sebastian - 22.03.2022
+Sebastian - 02.04.2022
