@@ -5,13 +5,6 @@ int main(int argc, char const* argv[])
 	// Battery status
 	SYSTEM_POWER_STATUS status;
 
-	// For console handles
-	HWND consoleWindow = GetConsoleWindow();
-
-	ShowWindow(consoleWindow, SW_MAXIMIZE);
-	Sleep(10);
-	ShowWindow(consoleWindow, SW_HIDE);
-
 	while (true)
 	{
 		GetSystemPowerStatus(&status);
